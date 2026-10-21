@@ -5,16 +5,16 @@
 <style>
 /* Layout: studio case-study site. Quiet nav, oversized statement, filterable 2-up project grid (or index list), each project opens as a full-page case study. */
 :root{
-  --bg:#F3F3F1; --tile:#E4E5E1; --ink:#121412; --muted:#686B66; --rule:#D2D3CE;
+  --bg:#F3F3F1; --tile:#E4E5E1; --ink:#121412; --muted:#686B66; --rule:#D2D3CE; --pen:none;
   --accent:#2B4FE0; --accent-soft:#CBD4F7;
   --sans:"Schibsted Grotesk","Helvetica Neue",Arial,sans-serif;
   --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#111211; --tile:#1C1E1C; --ink:#ECEDEA; --muted:#999C96; --rule:#2E312D;
+  --bg:#111211; --tile:#1C1E1C; --ink:#ECEDEA; --muted:#999C96; --rule:#2E312D; --pen:invert(.92);
   --accent:#8299FF; --accent-soft:#2C3767; color-scheme:dark}}
 :root[data-theme="dark"]{
-  --bg:#111211; --tile:#1C1E1C; --ink:#ECEDEA; --muted:#999C96; --rule:#2E312D;
+  --bg:#111211; --tile:#1C1E1C; --ink:#ECEDEA; --muted:#999C96; --rule:#2E312D; --pen:invert(.92);
   --accent:#8299FF; --accent-soft:#2C3767; color-scheme:dark}
 *{box-sizing:border-box}
 body{background:var(--bg);color:var(--ink);font:400 16px/1.55 var(--sans);-webkit-font-smoothing:antialiased}
@@ -56,7 +56,8 @@ nav.top{display:flex;justify-content:space-between;align-items:center;gap:16px;p
 .tile svg{width:82%;height:auto;max-height:88%;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
 .tile .tag{position:absolute;left:16px;top:14px}
 .tile .go{position:absolute;right:16px;bottom:14px;font:500 13px var(--sans);opacity:0;transform:translateY(4px);transition:.25s}
-.feature:hover .tile svg,.card:hover .tile svg{transform:scale(1.035)}
+.tile img.pen{width:86%;height:86%;object-fit:contain;filter:var(--pen);transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.feature:hover .tile svg,.card:hover .tile svg,.card:hover .tile img.pen{transform:scale(1.035)}
 .feature:hover .go,.card:hover .go,.feature:focus-visible .go,.card:focus-visible .go{opacity:1;transform:none}
 svg.fig *{vector-effect:non-scaling-stroke}
 svg.fig path,svg.fig rect,svg.fig circle,svg.fig ellipse,svg.fig line{fill:none;stroke:var(--ink);stroke-width:1.3;stroke-linejoin:round;stroke-linecap:round}
@@ -662,7 +663,9 @@ const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;
 const meter = n => `<span class="meter" aria-label="${n} of 5">${[1,2,3,4,5].map(k=>`<i class="${k<=n?"on":""}"></i>`).join("")}</span>`;
 const num = i => String(i+1).padStart(3,"0");
 
+const SK = new Set(["air-wing", "bald-cap", "battery-trucks", "baywatch-phone-preserver", "beer-coozie-clamp", "better-slider", "bike-pump-lock", "bin-train", "bull-dawg-tree-feller", "bunk-bed-gym", "canoe-innovations", "cap-keeper", "chaindrill", "chaingee", "chainsaw-handle-hand-saw", "cleat-tape-skateboard-system", "collapsed-lattice-matrix", "confetti-champagne", "corrugated-aluminum", "crumple-seatbelts-torsion-stop", "deuce-dump", "domino-double-mower", "dragon", "drop-pod-tripod", "drumstick-drum-key", "dvd-wall-mount", "explosion-diversion-trucks", "fence-post-shoe-and-fence-post-auger", "file-scrench", "flight-motorcycle", "fortune-cookie-filing-cabinet", "hollowball", "hospital-bed-pedaler", "hybrid-lawnmower", "ice-chalice-coffee-cooler", "ice-cream-scooper-tech", "ice-mug", "key-key-combo-key", "keychain-5-0", "kitchen-cutter", "laptop-leg-rest", "laptop-seat-briefcase-campus-chair", "leafsweep", "lightning-bolt-shaped-lightning-rods", "log-drill-screw-log-lift", "magnet-maul", "meat-mill", "metallic-velcro", "motorcycle-mower-sidecar", "motorcycle-spy-glasses", "oculus-lift", "office-pistol", "orbiting-wrench", "perpetual-candle", "pickup-fairing-bed", "rtut-recumbent-tricycle-utility-trailer", "screwing-metal-shim", "screwpole-pinch-winch", "segmented-variable-airbag", "sledgefists", "slidegear", "space-bobcat", "speaker-screen-dolly-combo", "split-view-bi-camera-stereovision", "spray-comb-brush-water", "stay-put-bedliner", "stretcher-lawnmower", "stretcher-logistics", "super-glue-bb-balls", "surfer-sleeves", "taser-mace-pistol", "task-bandz", "the-dually-door", "the-rowell-bed", "tire-augmentation", "toilet-wheelbarrow-and-post-hole-digger-toilet", "trash-can-built-in-can-crusher", "trash-can-corner-mirror", "velcrope", "velcrope-shoes", "vertical-dam", "video-innovation", "video-tension-gloves", "waffle-chocolate-and-butter-cubes", "water-bottle-storage-shed", "wedge-chipper", "weed-innovations", "woodpecker-hammer"]);  // slugs with a pen-sketch tile made from the book page (sketches/)
 function svgFor(it, idx, big){
+  if (!big && SK.has(it.slug)) return `<img class="pen" src="sketches/${it.slug}.webp" alt="Pen sketch of ${esc(it.n)}, from the INVENTOR notebook" loading="lazy">`;
   const d = DR[it.slug] || ["", []];
   const co = (big ? d[1] : []).map(([x,y,tx,ty,t]) => {
     const anc = tx >= x ? "start" : "end";

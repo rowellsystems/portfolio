@@ -13,7 +13,7 @@ DRY=""
 [[ "${1:-}" == "--dry-run" ]] && DRY="--dry-run"
 
 # Only the built page and its images go public (not sources or Coroflot exports).
-for d in pages art covers blueliners; do
+for d in pages art covers blueliners sketches; do
   rsync -a --delete $DRY --exclude '.*' "$INV/$d/" "$REPO/$d/"
 done
 rsync -a $DRY "$INV/index.html" "$REPO/index.html"
