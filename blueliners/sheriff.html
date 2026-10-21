@@ -122,12 +122,23 @@ h3:first-child{margin-top:0}
 .combo p{margin:0;font-size:11.5px;color:var(--dim)}
 .combo.star{border-left-color:var(--amber)}
 
+.match{display:grid;grid-template-columns:190px 22px 300px minmax(0,1fr);gap:4px 8px;align-items:center;font-size:12px}
+.match .why{color:var(--dim);font-size:11.5px}
+.match + .match{border-top:1px solid var(--line);padding-top:5px}
+.matches{display:grid;gap:5px;background:var(--panel-2);border:1px solid var(--line);padding:8px 10px}
+.ladders{display:grid;gap:4px;background:var(--panel-2);border:1px solid var(--line);padding:8px 10px}
+.lad{display:grid;grid-template-columns:minmax(0,1fr) 22px minmax(0,1fr) 22px minmax(0,1fr);gap:4px 6px;align-items:center}
+.lad.hd{font:600 11px/1 var(--cond);letter-spacing:.1em;text-transform:uppercase;color:var(--amber);padding-bottom:3px}
+.lad .node{text-align:center}
+.node.nx{border-color:var(--blue);color:var(--blue)}
 @media (max-width:820px){
   .grid{grid-template-columns:minmax(0,1fr)}
   .pipe{grid-template-columns:minmax(0,1fr)}
   .pipe div+div{border-left:1px solid var(--line);border-top:0}
   .stages{grid-template-columns:minmax(0,1fr)}
   .tiers,.combos{grid-template-columns:minmax(0,1fr)}
+  .lad{grid-template-columns:minmax(0,1fr) 14px minmax(0,1fr) 14px minmax(0,1fr)} .lad .node{font-size:11px;padding:4px}
+  .match{grid-template-columns:minmax(0,1fr) 18px minmax(0,1fr)} .match .why{grid-column:1/-1}
   .subject{grid-template-columns:minmax(0,1fr)}
   .status .right{margin-left:0}
 }
@@ -158,6 +169,7 @@ h3:first-child{margin-top:0}
   .tiers{grid-template-columns:repeat(3,minmax(0,1fr))}
   .combos{grid-template-columns:repeat(2,minmax(0,1fr))}
   .node{font-size:10.5px;padding:3px 5px}
+  .match{grid-template-columns:150px 16px 210px minmax(0,1fr)}
   .alert{background:#fff8e6}
   .pipe .demo{background:#e6f0fb}
   @page{size:letter;margin:.45in}
@@ -312,6 +324,18 @@ h3:first-child{margin-top:0}
             <ul><li>Own contracting business</li><li>A specialty: driveways, fences, pools, landscapes</li><li>Optional: CDL-A, motorcycle, bike patrol</li><li>Optional: farm or ranch ownership</li></ul>
           </div>
         </div>
+        <h3>Career ladders</h3>
+        <div class="ladders">
+          <div class="lad hd"><span>Demo skill learned</span><span></span><span>Graduates as</span><span></span><span>Next rung</span></div>
+          <div class="lad"><span class="node">Driveway &amp; sidewalk removal</span><span class="op">→</span><span class="node un">Concrete crew person</span><span class="op">→</span><span class="node nx">Concrete finisher</span></div>
+          <div class="lad"><span class="node">Fence tear-out</span><span class="op">→</span><span class="node un">Fence crew person</span><span class="op">→</span><span class="node nx">Fence installer</span></div>
+          <div class="lad"><span class="node">Garden &amp; bush removal</span><span class="op">→</span><span class="node un">Landscape crew person</span><span class="op">→</span><span class="node nx">Landscape installer</span></div>
+          <div class="lad"><span class="node">Pool fill-in &amp; demo</span><span class="op">→</span><span class="node un">Site crew person</span><span class="op">→</span><span class="node nx">Grading &amp; fill operator</span></div>
+          <div class="lad"><span class="node">Land clearing &amp; small tree work</span><span class="op">→</span><span class="node un">Tree crew person</span><span class="op">→</span><span class="node nx">Tree climber</span></div>
+          <div class="lad"><span class="node">Interior demolition</span><span class="op">→</span><span class="node un">Demo crew person</span><span class="op">→</span><span class="node nx">Demo foreman</span></div>
+          <div class="lad"><span class="node">Highway &amp; right-of-way mowing</span><span class="op">→</span><span class="node un">Mowing crew person</span><span class="op">→</span><span class="node nx">Mowing contract lead</span></div>
+          <div class="lad"><span class="node">Leaf raking &amp; cleanup</span><span class="op">→</span><span class="node un">Cleanup crew person</span><span class="op">→</span><span class="node nx">Crew lead</span></div>
+        </div>
         <h3>Combos</h3>
         <div class="combos">
           <div class="combo star">
@@ -344,10 +368,20 @@ h3:first-child{margin-top:0}
           </div>
           <div class="combo">
             <div class="eq"><span class="node ">Team trail rides</span><span class="op">→</span><span class="node opt">Bicycle patrol readiness</span></div>
-            <p>Mountain-bike and gravel rides for deputys headed toward bike patrol.</p>
+            <p>Mountain-bike and gravel rides for deputies headed toward bike patrol.</p>
           </div>
         </div>
-        <p class="note"><span class="node un">Green</span> = skill the program delivers · <span class="node opt">Dashed amber</span> = optional path. Optional unlocks are head starts, not certifications: licenses come from the state, CDL schools and the agency's own training.</p>
+        <h3>Matches by background</h3>
+        <div class="matches">
+          <div class="match"><span class="node">State trooper</span><span class="op">→</span><span class="node un">Highway &amp; right-of-way mowing</span><span class="why">Long stretches of road are already home turf. Tractor plus a batwing or flail mower, the kind of work DOT contracts out.</span></div>
+          <div class="match"><span class="node">SWAT / tactical team</span><span class="op">→</span><span class="node un">Skid steer, big crews &amp; interior demolition</span><span class="why">Used to moving as a team in tight spaces. Runs a Bobcat, leads a large crew, and guts interiors room by room.</span></div>
+          <div class="match"><span class="node">Motor officer</span><span class="op">→</span><span class="node un">Equipment hauling &amp; trailer work</span><span class="why">Already rides with a clutch. Moves tractors and machines between jobs and learns trailer loading fast.</span></div>
+          <div class="match"><span class="node">K-9 handler</span><span class="op">→</span><span class="node un">Fencing &amp; land clearing</span><span class="why">Knows yards, gates and property lines. Fence tear-outs, new fence lines and clearing for kennels and runs.</span></div>
+          <div class="match"><span class="node">Detective / investigator</span><span class="op">→</span><span class="node un">Estimating &amp; property walk-throughs</span><span class="why">Reads a scene for details. Walks the house, writes the scope and prices the job before the crew shows up.</span></div>
+          <div class="match"><span class="node">Marine / boat unit</span><span class="op">→</span><span class="node un">Waterfront cleanup &amp; dock demo</span><span class="why">Comfortable on the water. Seawall and dock tear-outs and storm cleanup along lakes and canals.</span></div>
+        </div>
+        <p class="note">Suggestions, not rules. Every deputy picks their own specialty.</p>
+        <p class="note"><span class="node un">Green</span> = skill the program delivers · <span class="node nx">Blue</span> = next rung · <span class="node opt">Dashed amber</span> = optional path. Optional unlocks are head starts, not certifications: licenses come from the state, CDL schools and the agency's own training.</p>
       </div>
     </section>
 
