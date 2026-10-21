@@ -106,11 +106,28 @@ h3:first-child{margin-top:0}
 
 .foot{margin-top:12px;display:flex;flex-wrap:wrap;gap:6px 18px;font-size:11.5px;color:var(--dim);border-top:1px solid var(--line);padding-top:8px}
 
+/* skill tree */
+.tiers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.tier{border:1px solid var(--line);background:var(--panel-2);padding:8px 10px;min-width:0}
+.tier .t{font:700 16px/1 var(--cond);letter-spacing:.06em;text-transform:uppercase}
+.tier .w{font-size:11px;color:var(--dim);margin:3px 0 6px}
+.tier ul{margin:0;padding-left:16px;display:grid;gap:3px;font-size:12px}
+.combos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+.combo{display:grid;gap:4px;align-content:start;border-left:3px solid var(--blue);padding:6px 10px;background:var(--panel-2);min-width:0}
+.eq{display:flex;flex-wrap:wrap;align-items:center;gap:5px}
+.node{font:600 12.5px/1 var(--cond);letter-spacing:.05em;text-transform:uppercase;padding:5px 7px;border:1px solid var(--line);background:var(--panel);color:var(--fg)}
+.node.un{border-color:var(--ok);color:var(--ok)}
+.node.opt{border-color:var(--amber);color:var(--amber);border-style:dashed}
+.op{color:var(--blue);font-weight:700}
+.combo p{margin:0;font-size:11.5px;color:var(--dim)}
+.combo.star{border-left-color:var(--amber)}
+
 @media (max-width:820px){
   .grid{grid-template-columns:minmax(0,1fr)}
   .pipe{grid-template-columns:minmax(0,1fr)}
   .pipe div+div{border-left:1px solid var(--line);border-top:0}
   .stages{grid-template-columns:minmax(0,1fr)}
+  .tiers,.combos{grid-template-columns:minmax(0,1fr)}
   .subject{grid-template-columns:minmax(0,1fr)}
   .status .right{margin-left:0}
 }
@@ -136,7 +153,11 @@ h3:first-child{margin-top:0}
   th,td{padding:4px 6px}
   .note,.pipe p,.stage p{font-size:9.5px}
   .wrap{padding:0;max-width:none}
-  .panel,.stage,.pipe div{break-inside:avoid}
+  .panel,.stage,.pipe div,.combo,.tier{break-inside:avoid}
+  #skills{break-inside:auto}
+  .tiers{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .combos{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .node{font-size:10.5px;padding:3px 5px}
   .alert{background:#fff8e6}
   .pipe .demo{background:#e6f0fb}
   @page{size:letter;margin:.45in}
@@ -156,6 +177,7 @@ h3:first-child{margin-top:0}
     <a class="hot" href="#subject">Subject</a>
     <a href="#tto">Org</a>
     <a href="#program">Program</a>
+    <a href="#skills">Skill Tree</a>
     <a href="#realestate">Real Estate</a>
     <a href="#insurance">Insurance</a>
     <a href="#premise">Premise</a>
@@ -172,7 +194,7 @@ h3:first-child{margin-top:0}
         <div>
           <p class="name">Rowell, George Bret <small>Goes by G.B. · Civilian · Sanford, FL</small></p>
           <dl class="f">
-            <dt>Role</dt><dd>Founder, Head Trainer &amp; CFO, The Blueliners (a Total Tear-Outs, Inc. program)</dd>
+                        <dt>Role</dt><dd>Founder, Head Trainer &amp; CFO, The Blueliners (a Total Tear-Outs, Inc. program)</dd>
             <dt>Licenses</dt><dd>FL Real Estate Sales Associate (since 2020, farm &amp; ranch focus) · FL Insurance 2-20 Property &amp; Casualty · FL Insurance 2-15 Life, Health &amp; Annuity · CDL Class A · FINRA SIE in progress</dd>
             <dt>Education</dt><dd>B.S., UCF Rosen College (Event Management) · A.A., Seminole Community College · Auburn University (wrestled club team)</dd>
             <dt>Field work</dt><dd>Hurricane Katrina chainsaw cleanup (Louisiana) · several years co-owning a tree removal business (trucks, dump trailers, Bobcat, bucket lift) · tractor work, pool fill-ins</dd>
@@ -266,6 +288,66 @@ h3:first-child{margin-top:0}
           </div>
         </div>
         <p class="note">Who it's for: officers on leave for stress, on administrative leave, out on injury and needing income, nearing retirement, or retired or separated.</p>
+      </div>
+    </section>
+
+    <!-- SKILL TREE -->
+    <section class="panel full" id="skills">
+      <div class="ph"><h2>Skill Tree</h2><span class="code">WHAT EACH SKILL UNLOCKS</span></div>
+      <div class="pb">
+        <div class="tiers">
+          <div class="tier">
+            <div class="t c-blue">Tier 1 · Foundation</div>
+            <div class="w">Blue Badger · in the field</div>
+            <ul><li>Tractor operation: clutch, loader, PTO</li><li>Chainsaw safety</li><li>Demo basics: break, stack, pack</li><li>Job-site safety &amp; body cam</li></ul>
+          </div>
+          <div class="tier">
+            <div class="t c-amb">Tier 2 · Build</div>
+            <div class="w">Rowell Ranch · in training</div>
+            <ul><li>Manual-transmission truck &amp; trailer</li><li>Skid steer &amp; heavy equipment</li><li>Estimating &amp; pricing</li><li>Insurance, financing &amp; business plan</li></ul>
+          </div>
+          <div class="tier">
+            <div class="t c-ok">Tier 3 · Unlocks</div>
+            <div class="w">Combat-Ant · plus optional paths</div>
+            <ul><li>Own contracting business</li><li>A specialty: driveways, fences, pools, landscapes</li><li>Optional: CDL-A, motorcycle, bike patrol</li><li>Optional: farm or ranch ownership</li></ul>
+          </div>
+        </div>
+        <h3>Combos</h3>
+        <div class="combos">
+          <div class="combo star">
+            <div class="eq"><span class="node ">Tractor (clutch)</span><span class="op">+</span><span class="node ">Manual truck</span><span class="op">→</span><span class="node opt">Motorcycle endorsement</span><span class="op">→</span><span class="node opt">Motor unit</span></div>
+            <p>Clutch control on a tractor, then a stick-shift truck, makes the motorcycle clutch feel familiar. An optional path toward a motor unit; the agency selects and trains its own riders.</p>
+          </div>
+          <div class="combo">
+            <div class="eq"><span class="node ">Manual truck</span><span class="op">+</span><span class="node ">Trailer towing</span><span class="op">+</span><span class="node ">CDL-A mentor</span><span class="op">→</span><span class="node opt">CDL-A</span></div>
+            <p>Rowell holds a CDL-A and coaches the basics. A licensed CDL school does the training and testing.</p>
+          </div>
+          <div class="combo">
+            <div class="eq"><span class="node ">Tractor</span><span class="op">+</span><span class="node ">Chainsaw safety</span><span class="op">→</span><span class="node un">Land clearing &amp; small tree work</span></div>
+            <p>The first paid specialty most Blue Badgers can run on their own.</p>
+          </div>
+          <div class="combo">
+            <div class="eq"><span class="node ">Tractor</span><span class="op">+</span><span class="node ">Demo basics</span><span class="op">→</span><span class="node un">Driveway, fence &amp; pool tear-outs</span></div>
+            <p>Break it out, stack and pack the dumpster. The core of every rehab.</p>
+          </div>
+          <div class="combo">
+            <div class="eq"><span class="node ">Demo on own fixer-upper</span><span class="op">+</span><span class="node ">Real estate pipeline</span><span class="op">→</span><span class="node un">Home + sweat equity</span></div>
+            <p>The officer does the tear-out on their own house, then can do it again for neighbors.</p>
+          </div>
+          <div class="combo">
+            <div class="eq"><span class="node ">Estimating</span><span class="op">+</span><span class="node ">Insurance &amp; financing</span><span class="op">→</span><span class="node ">Business plan</span><span class="op">→</span><span class="node un">Combat-Ant launch</span></div>
+            <p>Pricing, coverage and a loan-ready plan, presented to the board.</p>
+          </div>
+          <div class="combo">
+            <div class="eq"><span class="node ">Tractor</span><span class="op">+</span><span class="node ">Farm track</span><span class="op">→</span><span class="node opt">Farm or ranch ownership</span></div>
+            <p>For the ones who want land: finding it, financing it and running equipment on it.</p>
+          </div>
+          <div class="combo">
+            <div class="eq"><span class="node ">Team trail rides</span><span class="op">→</span><span class="node opt">Bicycle patrol readiness</span></div>
+            <p>Mountain-bike and gravel rides for officers headed toward bike patrol.</p>
+          </div>
+        </div>
+        <p class="note"><span class="node un">Green</span> = skill the program delivers · <span class="node opt">Dashed amber</span> = optional path. Optional unlocks are head starts, not certifications: licenses come from the state, CDL schools and the agency's own training.</p>
       </div>
     </section>
 
