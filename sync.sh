@@ -18,11 +18,15 @@ for d in pages art covers blueliners sketches mdt; do
 done
 rsync -a $DRY "$INV/index.html" "$REPO/index.html"
 
+# Taylor Nathe's photo site rebuild, served at /taylor/ (noindex; checkout stays on tnathe.com).
+TAYLOR="$HOME/Documents/2 Areas/08 TNathe Site Rebuild/Taylors Site"
+rsync -a --delete $DRY --exclude '.*' "$TAYLOR/" "$REPO/taylor/"
+
 cd "$REPO"
 [[ -n "$DRY" ]] && { git status --short; exit 0; }
 
 # Privacy check: refuse to publish if a private name slips into the text.
-if grep -rIilE 'sorel|michael|wright|ingersoll|mikesoreljr' --exclude=sync.sh --exclude-dir=.git . ; then
+if grep -rIilE '\b(sorel|michael|wright|ingersoll)|mikesoreljr' --exclude=sync.sh --exclude-dir=.git . ; then
   echo "STOPPED: private name found in the files above. Nothing pushed." >&2
   exit 1
 fi
